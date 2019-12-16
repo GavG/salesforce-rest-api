@@ -41,8 +41,7 @@ class Client implements LoggerAwareInterface
             static::SALESFORCE_API_URL_PATTERN);
         $this->log = $log ?: new NullLogger();
         $this->authentication = $authentication;
-        $this->guzzle = $guzzle;
-        $this->guzzle->setBaseUrl($this->apiBaseUrl);
+        $this->guzzle = new GuzzleHttp\Client(['base_url' => $this->apiBaseUrl]);
     }
 
     /**
