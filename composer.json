@@ -1,5 +1,5 @@
 {
-  "name": "gmo/salesforce-rest-api",
+  "name": "gavg/salesforce-rest-api",
   "license": "MIT",
   "require": {
     "psr/log": "^1.0",
