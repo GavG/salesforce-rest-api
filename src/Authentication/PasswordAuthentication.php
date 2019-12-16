@@ -31,7 +31,7 @@ class PasswordAuthentication implements AuthenticationInterface, LoggerAwareInte
         $password,
         $securityToken,
         LoggerInterface $log = null,
-        $loginApiUrl = "https://login.salesforce.com/services/"
+        $loginApiUrl = "https://login.salesforce.com/services/oauth2/token"
     ) {
         $this->log = $log ?: new NullLogger();
         $this->clientId = $clientId;
