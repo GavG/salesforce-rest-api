@@ -40,7 +40,7 @@ class PasswordAuthentication implements AuthenticationInterface, LoggerAwareInte
         $this->password = $password;
         $this->securityToken = $securityToken;
 
-        $this->guzzle = new GuzzleHttp();
+        $this->guzzle = new GuzzleHttp\Client();
     }
 
     /**
