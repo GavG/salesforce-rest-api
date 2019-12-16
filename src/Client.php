@@ -3,8 +3,8 @@ namespace Gmo\Salesforce;
 
 use Gmo\Salesforce\Authentication\AuthenticationInterface;
 use Gmo\Salesforce\Exception;
-use Guzzle\Http;
-use Guzzle\Http\Exception\ClientErrorResponseException;
+use GuzzleHttp;
+use GuzzleHttp\BadResponseException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -17,7 +17,7 @@ class Client implements LoggerAwareInterface
     protected $apiBaseUrl;
     /** @var LoggerInterface */
     protected $log;
-    /** @var  Http\Client */
+    /** @var  GuzzleHttp\Client */
     protected $guzzle;
     /** @var AuthenticationInterface */
     protected $authentication;
@@ -25,14 +25,14 @@ class Client implements LoggerAwareInterface
     /**
      * Creates a Salesforce REST API client that uses username-password authentication
      * @param AuthenticationInterface $authentication
-     * @param Http\Client $guzzle
+     * @param GuzzleHttp\Client $guzzle
      * @param string $apiRegion The region to use for the Salesforce API.  i.e. na5 or cs30
      * @param string $apiVersion The version of the API to use.  i.e. v31.0
      * @param LoggerInterface $log
      */
     public function __construct(
         AuthenticationInterface $authentication,
-        Http\Client $guzzle,
+        GuzzleHttp\Client $guzzle,
         $apiRegion,
         $apiVersion = 'v31.0',
         LoggerInterface $log = null
@@ -192,7 +192,7 @@ class Client implements LoggerAwareInterface
             $response = $request->send();
             $responseBody = $response->getBody();
 
-        } catch (ClientErrorResponseException $e) {
+        } catch (BadResponseException $e) {
             $response = $e->getResponse();
             $responseBody = $response->getBody();
             $message = $responseBody;

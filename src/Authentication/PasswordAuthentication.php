@@ -1,7 +1,7 @@
 <?php
 namespace Gmo\Salesforce\Authentication;
 
-use Guzzle\Http;
+use GuzzleHttp;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -24,7 +24,7 @@ class PasswordAuthentication implements AuthenticationInterface, LoggerAwareInte
     protected $securityToken;
     /** @var string */
     protected $accessToken;
-    /** @var Http\Client */
+    /** @var GuzzleHttp\Client */
     private $guzzle;
 
     public function __construct(
@@ -33,7 +33,7 @@ class PasswordAuthentication implements AuthenticationInterface, LoggerAwareInte
         $username,
         $password,
         $securityToken,
-        Http\Client $guzzle,
+        GuzzleHttp\Client $guzzle,
         LoggerInterface $log = null,
         $loginApiUrl = "https://login.salesforce.com/services/"
     ) {
