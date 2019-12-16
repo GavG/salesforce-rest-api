@@ -32,7 +32,6 @@ class Client implements LoggerAwareInterface
      */
     public function __construct(
         AuthenticationInterface $authentication,
-        GuzzleHttp\Client $guzzle,
         $apiRegion,
         $apiVersion = 'v31.0',
         LoggerInterface $log = null
